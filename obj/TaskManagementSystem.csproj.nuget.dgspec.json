@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj": {}
+    "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj": {}
   },
   "projects": {
-    "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj": {
+    "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj",
+        "projectUniqueName": "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj",
         "projectName": "TaskManagementSystem",
-        "projectPath": "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj",
+        "projectPath": "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj",
         "packagesPath": "/home/nwassom/.nuget/packages/",
-        "outputPath": "/home/nwassom/TaskManagementSystem/obj/",
+        "outputPath": "/home/nwassom/TaskManagementSystem/src/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/nwassom/.nuget/NuGet/NuGet.Config"

@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Task = TaskManagementSystem.Models.Task;
+
+namespace TaskManagementSystem.Data;
 
 public class TaskManagementDbContext : DbContext
 {
@@ -11,7 +14,6 @@ public class TaskManagementDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.Entity<Task>()
-			.HasKey(t => t.Id);
+		modelBuilder.Entity<Task>().HasKey(t => t.Id);
 	}
 }

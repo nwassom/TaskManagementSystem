@@ -25,6 +25,12 @@ public class TaskController : ControllerBase
 	[HttpPost]
 	public IActionResult CreateTasks([FromBody] Task task)
 	{
+		if (task == null)
+		{
+			return BadRequest("Task cannot be null");
+		}
+		
+		Console.WriteLine("Getting this far");
 		_taskService.AddTask(task);
 		return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
 	}
