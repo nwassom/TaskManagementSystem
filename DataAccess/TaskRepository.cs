@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Task = TaskManagementSystem.Models.Task;
 
 namespace TaskManagementSystem.DataAccess;
-
-
 /*	
 	Repository class that manages tasks within the database
 */

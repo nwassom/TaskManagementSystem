@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
 using Task = TaskManagementSystem.Models.Task;
 
-[ApiController]
-[Route("api/[controller]")]
+namespace TaskManagementSystem.Controllers;
 
+[ApiController]
+[Route("api/task")]
 public class TaskController : ControllerBase
 {
 	private readonly TaskService _taskService;
@@ -22,7 +23,7 @@ public class TaskController : ControllerBase
 	}
 
 	[HttpPost]
-	public IActionResult CreateTasks(Task task)
+	public IActionResult CreateTasks([FromBody] Task task)
 	{
 		_taskService.AddTask(task);
 		return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
