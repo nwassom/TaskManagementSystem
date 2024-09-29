@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore; // Required for UseSqlServer
+using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Services;
 using TaskManagementSystem.DataAccess;
 using TaskManagementSystem.Data;
@@ -21,6 +21,16 @@ public class Startup
 
 	public void ConfigureServices(IServiceCollection services)
 	{
+		services.AddCors(options =>{
+			options.AddPolicy("AllowReactApp",
+				builder =>
+				{
+					builder.WithOrigins("https://localhost:3000")
+						.AllowAnyHeader()
+						.AllowAnyMethod();
+				});
+		});
+
 		services.AddDbContext<TaskManagementDbContext>(options =>
 			options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 		services.AddControllers();
@@ -30,7 +40,9 @@ public class Startup
 
 	public void Configure(IApplicationBuilder app)
 	{
+		app.UseHttpsRedirection();
 		app.UseRouting();
+		app.UseCors("AllowReactApp");
 		app.UseAuthorization();
 
 		app.UseEndpoints(endpoints =>

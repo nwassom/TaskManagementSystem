@@ -2790,11 +2790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj",
+      "projectUniqueName": "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj",
       "projectName": "TaskManagementSystem",
-      "projectPath": "/home/nwassom/TaskManagementSystem/src/TaskManagementSystem.csproj",
+      "projectPath": "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj",
       "packagesPath": "/home/nwassom/.nuget/packages/",
-      "outputPath": "/home/nwassom/TaskManagementSystem/src/obj/",
+      "outputPath": "/home/nwassom/TaskManagementSystem/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/nwassom/.nuget/NuGet/NuGet.Config"
