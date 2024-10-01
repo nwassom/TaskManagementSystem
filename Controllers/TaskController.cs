@@ -4,6 +4,9 @@ using Task = TaskManagementSystem.Models.Task;
 
 namespace TaskManagementSystem.Controllers;
 
+/*
+	Class to handles Api endpoints
+*/
 [ApiController]
 [Route("api/task")]
 public class TaskController : ControllerBase

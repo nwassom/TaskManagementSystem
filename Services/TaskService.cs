@@ -4,6 +4,9 @@ using TaskManagementSystem.DataAccess;
 
 namespace TaskManagementSystem.Services;
 
+/*
+	Handles business logic and acts as middle layer between controller and database
+*/
 public class TaskService
 {
 	private readonly TaskRepository _taskRepository;

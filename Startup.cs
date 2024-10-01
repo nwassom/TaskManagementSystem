@@ -10,7 +10,9 @@ using TaskManagementSystem.Data;
 
 namespace TaskManagementSystem;
 
-// Startup class that initiates the backend server
+/*
+	Startup class that initiates the backend server
+*/
 public class Startup
 {
 	private readonly IConfiguration _configuration;

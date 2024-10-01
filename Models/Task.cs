@@ -2,7 +2,9 @@ using System;
 
 namespace TaskManagementSystem.Models;
 
-
+/*
+	Model for tasks
+*/
 public class Task
 {
 	public int Id { get; set;}

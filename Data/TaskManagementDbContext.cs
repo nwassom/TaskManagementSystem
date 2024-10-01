@@ -3,6 +3,9 @@ using Task = TaskManagementSystem.Models.Task;
 
 namespace TaskManagementSystem.Data;
 
+/*
+	Bridge between backend server and the sqlserver database
+*/
 public class TaskManagementDbContext : DbContext
 {
 	public TaskManagementDbContext(DbContextOptions<TaskManagementDbContext> options)
