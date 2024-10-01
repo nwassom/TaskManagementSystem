@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using TaskManagementSystem;
 
+// Main that creates the Host 
 public class Program
 {
 	public static void Main(string [] args)

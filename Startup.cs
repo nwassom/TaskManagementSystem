@@ -10,6 +10,7 @@ using TaskManagementSystem.Data;
 
 namespace TaskManagementSystem;
 
+// Startup class that initiates the backend server
 public class Startup
 {
 	private readonly IConfiguration _configuration;
@@ -25,7 +26,7 @@ public class Startup
 			options.AddPolicy("AllowReactApp",
 				builder =>
 				{
-					builder.WithOrigins("https://localhost:3000")
+					builder.WithOrigins("http://localhost:3000", "https://localhost:3000")
 						.AllowAnyHeader()
 						.AllowAnyMethod();
 				});

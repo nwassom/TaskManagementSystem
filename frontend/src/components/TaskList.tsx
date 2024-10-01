@@ -7,6 +7,7 @@ interface Task
 	title: string;
 	description: string;
 	isCompleted: boolean;
+	createdAt: string;
 }
 
 const TaskList: React.FC = () =>
@@ -51,11 +52,16 @@ const TaskList: React.FC = () =>
 	return (
 		<div>
 			<h1>Task List</h1>
-			<ul>
+			<ul style={{ listStyleType: 'none', padding: 0 }}>
 				{ tasks.map((task) =>
 					(
 						<li key={task.id}>
-							<h2>{task.title}</h2>
+							<h4>{task.title}</h4>
+							<p>Created on: {new Date(task.createdAt).toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}</p>
 							<p>{task.description}</p>
 							<p>Completed: {task.isCompleted ? 'Yes' : 'No'}</p>
 						</li>
