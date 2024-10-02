@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Task from '../Models/Task';
+import { setTasks, addTask } from '../redux/taskSlice';
+import { RootState } from '../redux/store';
 
 const TaskList: React.FC = () =>
 {
-	const [tasks, setTasks] = useState<Task[]>([]);
+	const dispatch = useDispatch();
+	const tasks = useSelector((state: RootState) => state.tasks.tasks);
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
@@ -13,7 +17,7 @@ const TaskList: React.FC = () =>
 			try 
 			{
 				const response = await axios.get('http://localhost:5000/api/task');
-				setTasks(response.data);
+				dispatch(setTasks(response.data));
 				setLoading(false);
 			}
 			catch(error)
@@ -28,7 +32,7 @@ const TaskList: React.FC = () =>
 		};
 
 		fetchTasks();
-	}, []);
+	}, [dispatch]);
 
 	if (loading) 
 	{

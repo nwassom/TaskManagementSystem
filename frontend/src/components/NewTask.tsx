@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import Task from '../Models/Task';
 import TaskList from './TaskList';
+import { addTask } from '../redux/taskSlice';
 
 const NewTask: React.FC = () =>
 {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [isCompleted, setIsCompleted] = useState(false);
+	const dispatch = useDispatch();
 
 
 	const handleSubmit = async (e: React.FormEvent) => 
@@ -22,8 +25,8 @@ const NewTask: React.FC = () =>
 				description,
 				isCompleted,
 			};
-
 			const response = await axios.post('http://localhost:5000/api/task', newTask);
+			dispatch(addTask(response.data));
 
 			setTitle("");
 			setDescription("")
