@@ -40,7 +40,7 @@ const NewTask: React.FC = () =>
 	return (
 		<div className="w-full flex flex-col items-center p-4">	
 			<h1 className="text-2xl font-bold text-center text-amber-100">Create New Task</h1>
-			<form className="w-full max-w-md space-y-4 newTaskForm" onSubmit={handleSubmit}>
+			<form className="w-full max-w-md pb-10 space-y-4 newTaskForm" onSubmit={handleSubmit}>
 				<div>
 					<label className="block text-sm font-medium text-slate-300" htmlFor="title">Task title:</label>
 					<input
