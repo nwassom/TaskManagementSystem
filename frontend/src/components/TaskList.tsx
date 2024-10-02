@@ -42,13 +42,13 @@ const TaskList: React.FC = () =>
 
 	return (
 		<div className="container mx-auto p-4">
-			<h1 className="text-4xl font-bold text-center mb-6 text-gray-700">Task List</h1>
+			<h1 className="text-4xl font-bold text-center mb-6 text-amber-100">Task List</h1>
 			<div className="overflow-x-auto  scrollbar-custom">
 				<ul className="flex space-x-4 mb-10 blue" style={{ listStyleType: 'none', padding: 0 }}>
 					{ tasks.map((task) =>
 						(
 							<li key={task.id} 
-								className="bg-white shadow-md rounded-lg p-6 border border-gray-200 min-w-[300px] max-w-[300px] flex-shrink-0">
+								className="bg-white shadow-lg shadow-amber-200/60 rounded-lg p-8 shadow-sm min-w-[300px] max-w-[300px] flex-shrink-0">
 								<h4 className="text-2xl font-semibold text-gray-800 mb-2">{task.title}</h4>
 								<p  className="text-sm text-gray-500 mb-2"
 									>Created on: {new Date(task.createdAt).toLocaleDateString('en-US', {
