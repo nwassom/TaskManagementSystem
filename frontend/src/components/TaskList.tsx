@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Task from '../Models/Task';
+
 const TaskList: React.FC = () =>
 {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -33,7 +34,6 @@ const TaskList: React.FC = () =>
 	{
 		return <p>Loading tasks...</p>;
 	}
-
 
 	if (tasks.length === 0)
 	{
