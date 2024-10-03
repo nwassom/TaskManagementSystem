@@ -33,3 +33,47 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: brown; /* Scrollbar thumb color on hover */
 }
+
+.trashIcon
+{
+  width: 1.75em;
+  height: 1.95em;
+  color: indianred;
+  transition: transform 0.15s ease; 
+}
+
+.deleteTask:hover .trashIcon
+{
+  transform: scale(1.1);
+  color: firebrick;
+}
+
+.deleteTask
+{
+   position: relative !important;
+   display: inline-block;
+   left: 50%;
+   bottom: 12%;
+   padding: 6px 6px;
+   background-color: lightgrey;
+   border-radius: 15px;
+   transition: transform 0.15s ease; 
+}
+.deleteTask:hover
+{
+   position: relative !important;
+   display: inline-block;
+   left: 50%;
+   bottom: 12%;
+   padding: 6px 6px;
+   background-color: darkgray;
+   border-radius: 15px;
+   transform: scale(1.1);
+}
+
+.TaskInfo
+{
+  display: flex-column;
+  justify-content: center;
+  align-items: center;
+}

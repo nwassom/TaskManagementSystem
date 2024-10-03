@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w96jJDPzWV0=",
+  "dgSpecHash": "ALa9U/62WD0=",
   "success": true,
-  "projectFilePath": "/home/nwassom/TaskManagementSystem/TaskManagementSystem.csproj",
+  "projectFilePath": "/home/nwassom/TaskManagementSystem/backend/TaskManagementSystem.csproj",
   "expectedPackageFiles": [
     "/home/nwassom/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/nwassom/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
