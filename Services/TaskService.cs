@@ -25,4 +25,14 @@ public class TaskService
 	{
 		return _taskRepository.GetTasks();
 	}
+
+	public Task GetTaskById(int id)
+	{
+		return _taskRepository.GetTaskById(id);
+	}
+
+	public void DeleteTasks(Task task)
+	{
+		_taskRepository.DeleteTasks(task);
+	}
 }
