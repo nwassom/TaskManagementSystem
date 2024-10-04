@@ -50,19 +50,23 @@
 
 .deleteTask
 {
-   position: relative !important;
-   left: 50%;
-   bottom: 12%;
+   position: absolute !important;
+   right: 2%;
+   top: 2%;
    padding: 6px 6px;
-   background-color: lightgrey;
-   border-radius: 15px;
+   background-color: lightslategray;
+   border-radius: 12px;
    transition: transform 0.15s ease;
    visibility: hidden;
 }
+.deleteTask:hover
+{
+  background-color: dimgrey;
+}
+
 .TaskBox:hover .deleteTask
 {
    display: inline-block;
-   background-color: darkslategrey;
    transform: scale(1.1);
    visibility: visible;
 }
@@ -72,4 +76,9 @@
   display: flex-column;
   justify-content: center;
   align-items: center;
+}
+
+.newTaskForm
+{
+  width: 50%;
 }
