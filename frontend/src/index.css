@@ -39,7 +39,7 @@
   width: 1.75em;
   height: 1.95em;
   color: indianred;
-  transition: transform 0.15s ease; 
+  transition: transform 0.15s ease;
 }
 
 .deleteTask:hover .trashIcon
@@ -51,24 +51,20 @@
 .deleteTask
 {
    position: relative !important;
-   display: inline-block;
    left: 50%;
    bottom: 12%;
    padding: 6px 6px;
    background-color: lightgrey;
    border-radius: 15px;
-   transition: transform 0.15s ease; 
+   transition: transform 0.15s ease;
+   visibility: hidden;
 }
-.deleteTask:hover
+.TaskBox:hover .deleteTask
 {
-   position: relative !important;
    display: inline-block;
-   left: 50%;
-   bottom: 12%;
-   padding: 6px 6px;
-   background-color: darkgray;
-   border-radius: 15px;
+   background-color: darkslategrey;
    transform: scale(1.1);
+   visibility: visible;
 }
 
 .TaskInfo

@@ -54,7 +54,7 @@ const TaskList: React.FC = () =>
 					{ tasks.map((task) =>
 						(
 							<li key={task.id} 
-								className="bg-white shadow-lg shadow-amber-200/60 rounded-lg p-8 shadow-sm min-w-[300px] max-w-[300px] flex-shrink-0">
+								className="TaskBox bg-white shadow-lg shadow-amber-200/60 rounded-lg p-8 shadow-sm min-w-[300px] max-w-[300px] flex-shrink-0">
 								<div className="deleteTask">
 									<DeleteTask task={task}/>
 								</div>
