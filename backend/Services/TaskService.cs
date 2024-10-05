@@ -35,4 +35,14 @@ public class TaskService
 	{
 		_taskRepository.DeleteTasks(task);
 	}
+
+	public void UpdateTask(Task updatedTask)
+	{
+		_taskRepository.UpdateTask(updatedTask);
+	}
+
+	public void TaskCompletionToggle(Task task)
+	{
+		_taskRepository.TaskCompletionToggle(task);
+	}
 }

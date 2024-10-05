@@ -54,4 +54,16 @@ public class TaskRepository
 		_context.Tasks.Remove(task);
 		_context.SaveChanges();
 	}
+
+	public void UpdateTask(Task updatedTask)
+	{
+		_context.Tasks.Update(updatedTask);
+		_context.SaveChanges();
+	}
+
+	public void TaskCompletionToggle(Task task)
+	{
+		_context.Tasks.Update(task);
+		_context.SaveChanges();
+	}
 }
