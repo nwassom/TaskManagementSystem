@@ -93,13 +93,15 @@ public class TaskController : ControllerBase
 		}
 	}
 
-	// // Update Task Completion via Toggle True -> False & vice versa
+	// Update Task Completion via Toggle True -> False & vice versa
 	// [HttpPatch("{id}")]
-	// public IActionResult TaskCompletionToggle(int id)
+	// public IActionResult TaskCompletionToggle(int id, [FromBody] Task toggledTask)
 	// {
 	// 	try
 	// 	{
 	// 		var task = _taskService.GetTaskById(id);
+
+	// 		if (task =)
 	// 	}
 	// }
 }

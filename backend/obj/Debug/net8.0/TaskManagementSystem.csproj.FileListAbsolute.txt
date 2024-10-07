@@ -187,3 +187,5 @@
 /home/nwassom/TaskManagementSystem/backend/obj/Debug/net8.0/TaskManagementSystem.pdb
 /home/nwassom/TaskManagementSystem/backend/obj/Debug/net8.0/TaskManagementSystem.genruntimeconfig.cache
 /home/nwassom/TaskManagementSystem/backend/obj/Debug/net8.0/ref/TaskManagementSystem.dll
+/home/nwassom/TaskManagementSystem/backend/bin/Debug/net8.0/DotNetEnv.dll
+/home/nwassom/TaskManagementSystem/backend/bin/Debug/net8.0/Sprache.dll

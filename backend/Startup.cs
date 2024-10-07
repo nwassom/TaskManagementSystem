@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
+
 using TaskManagementSystem.Services;
 using TaskManagementSystem.DataAccess;
 using TaskManagementSystem.Data;
@@ -20,6 +22,8 @@ public class Startup
 	public Startup(IConfiguration configuration)
 	{
 		_configuration = configuration;
+
+		DotNetEnv.Env.Load("../.env");
 	}
 
 	public void ConfigureServices(IServiceCollection services)
@@ -34,8 +38,12 @@ public class Startup
 				});
 		});
 
+		string connectionString = _configuration.GetConnectionString("DefaultConnection")
+            .Replace("{YourPassword}", System.Environment.GetEnvironmentVariable("SA_PASSWORD"));
+
+        Console.Write(connectionString);
 		services.AddDbContext<TaskManagementDbContext>(options =>
-			options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+			options.UseSqlServer(connectionString));
 		services.AddControllers();
 		services.AddScoped<TaskService>();
 		services.AddScoped<TaskRepository>();
