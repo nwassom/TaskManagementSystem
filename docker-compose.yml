@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    env_file:
+      - .env # Add in the .env file manually
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=July2301!
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql/data
+    networks:
+      - app-network
+
+volumes:
+  sql_data:
+
+networks:
+  app-network:
+    driver: bridge
