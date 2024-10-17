@@ -39,7 +39,9 @@ public class Startup
 		});
 
 		string connectionString = _configuration.GetConnectionString("DefaultConnection")
-            .Replace("{YourPassword}", System.Environment.GetEnvironmentVariable("SA_PASSWORD"));
+			.Replace("{DbUser}", System.Environment.GetEnvironmentVariable("SA_USER"))
+            .Replace("{DbPassword}", System.Environment.GetEnvironmentVariable("SA_PASSWORD"))
+            .Replace("{DbIPAddress}", System.Environment.GetEnvironmentVariable("DB_IPADDRESS"));
 
         Console.Write(connectionString);
 		services.AddDbContext<TaskManagementDbContext>(options =>
