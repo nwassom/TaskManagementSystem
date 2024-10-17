@@ -24,4 +24,5 @@ yarn-error.log*
 
 .env
 
-sql_docker/
+azure/.terraform
+azure/terraform.tfvars
