@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nwassom/Desktop/TaskManagementSystem/backend/TaskManagementSystem.csproj": {}
+    "/home/nwassom/TaskManagementSystem/backend/TaskManagementSystem.csproj": {}
   },
   "projects": {
-    "/Users/nwassom/Desktop/TaskManagementSystem/backend/TaskManagementSystem.csproj": {
+    "/home/nwassom/TaskManagementSystem/backend/TaskManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nwassom/Desktop/TaskManagementSystem/backend/TaskManagementSystem.csproj",
+        "projectUniqueName": "/home/nwassom/TaskManagementSystem/backend/TaskManagementSystem.csproj",
         "projectName": "TaskManagementSystem",
-        "projectPath": "/Users/nwassom/Desktop/TaskManagementSystem/backend/TaskManagementSystem.csproj",
-        "packagesPath": "/Users/nwassom/.nuget/packages/",
-        "outputPath": "/Users/nwassom/Desktop/TaskManagementSystem/backend/obj/",
+        "projectPath": "/home/nwassom/TaskManagementSystem/backend/TaskManagementSystem.csproj",
+        "packagesPath": "/home/nwassom/.nuget/packages/",
+        "outputPath": "/home/nwassom/TaskManagementSystem/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nwassom/.nuget/NuGet/NuGet.Config"
+          "/home/nwassom/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/252/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
