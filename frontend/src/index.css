@@ -121,3 +121,31 @@
    transform: scale(1.1);
    visibility: visible;
 }
+
+
+/*
+    Handles the Blurring of Tasks when editing a task
+*/
+.TaskBox
+{
+  z-index: 100;
+}
+.TaskEditing
+{
+  z-index: 101;
+  
+}
+.TaskNotEditing
+{
+  z-index: 100;
+}
+.TaskEditOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 100; /* Put it below the task component */
+}

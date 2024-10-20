@@ -8,9 +8,10 @@ import { ReactComponent as CheckMark} from '../assets/check-mark.svg';
 interface UpdateTaskProps
 {
 	task: Task;
+	onEditToggle: (isEditing: boolean) => void;
 }
 
-const UpdateTask: React.FC<UpdateTaskProps> = ({ task }) =>
+const UpdateTask: React.FC<UpdateTaskProps> = ({ task, onEditToggle }) =>
 {
 	const dispatch = useDispatch();
 
@@ -18,7 +19,16 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ task }) =>
 
 	const handleEdit = () =>
 	{
+		if (editing)
+		{
+			// once check marked is clicked to end editing
+			//handleUpdate();
+		}
+
+		// Sets the state of the UpdateTask component as well as the parent Task component
+		const parentEditState = !editing;
 		setEditing(!editing);
+		onEditToggle(parentEditState);
 	};
 
 	const handleUpdate = async (id: number) =>
