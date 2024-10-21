@@ -16,11 +16,17 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ task, editStatus }) =>
 {
 	const dispatch = useDispatch();
 
+	const updateApi = () =>
+	{
+
+	};
+
 	const handleUpdate = async (id: number) =>
 	{
 		if (editStatus)
 		{
 			dispatch(updateTask(task));
+			updateApi();
 		}
 	};
 

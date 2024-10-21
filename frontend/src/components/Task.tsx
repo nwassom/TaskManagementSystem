@@ -50,6 +50,7 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 		setIsEditing(false);
 	};
 
+	// Eventually split into two components: TaskEdit | Task
 	return (
 		<div className={isEditing ? 'TaskEditing' : 'TaskNotEditing'}>
 			{isEditing && <div className="TaskEditOverlay"></div>}
