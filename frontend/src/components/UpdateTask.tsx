@@ -6,32 +6,60 @@ import { updateTask } from '../redux/taskSlice';
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg';
 import { ReactComponent as CheckMark} from '../assets/check-mark.svg';
 
+import { CompareTask } from '../utils/CompareTask';
+
 interface UpdateTaskProps
-{
-	task: Task;
+{	
+	currentTask: Task;
+	editedTask: Task;
 	editStatus: boolean;
+	handleEditStatusChange: () => void;
 }
 
-const UpdateTask: React.FC<UpdateTaskProps> = ({ task, editStatus }) =>
+const UpdateTask: React.FC<UpdateTaskProps> = ({ currentTask, editedTask, editStatus, handleEditStatusChange }) =>
 {
 	const dispatch = useDispatch();
 
-	const updateApi = () =>
+	// Api call to backend to update the task
+	const updateApi = async (updatedTask: Task) =>
 	{
-
+		try
+		{
+			const response = await axios.patch(`http://localhost:5000/api/task/${updatedTask.id}`, updatedTask);
+			console.log(response);
+		}
+		catch (error)
+		{
+			console.error('Error updating task:', error);
+		}
 	};
 
-	const handleUpdate = async (id: number) =>
+	/*
+		Function to handle everything if edits were made or not
+
+		Also uses the handleEditStatusChange that was passed from parent component
+		to change if editing or not
+	*/
+	const handleUpdate = async (currentTask: Task | undefined, editedTask: Task | undefined) =>
 	{
-		if (editStatus)
+		if (editStatus && currentTask !== undefined && editedTask !== undefined)
 		{
-			dispatch(updateTask(task));
-			updateApi();
+			// Makes sure they aren't the same exact data
+			if (!CompareTask(editedTask, currentTask))
+			{
+				updateApi(editedTask);
+				dispatch(updateTask(editedTask));
+			}
+			handleEditStatusChange();
+		}
+		else
+		{
+			handleEditStatusChange();
 		}
 	};
 
 	return (
-		<div className="inline-block">
+		<div className="inline-block" onClick={() => handleUpdate(currentTask, editedTask)}>
 			{ editStatus ? (
 				<CheckMark className="checkMark"/>
 			) : (

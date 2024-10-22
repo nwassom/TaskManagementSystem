@@ -22,8 +22,8 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 	const [currentTask, setCurrentTask] = useState<TaskModel>(task);
 	const [editedTask, setEditedTask] = useState<TaskModel>(task);
 
-	// If editing updates the frontend with edit
-	const handleUpdate = () =>
+	// Toggles edit status ** This is passed to Update Component to be used
+	const handleEditStatusChange = () =>
 	{	
 		if (isEditing)
 		{
@@ -58,8 +58,8 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 			<li key={currentTask.id} 
 				className="relative TaskBox bg-white shadow-lg shadow-amber-200/60 rounded-lg p-10 shadow-sm min-w-[300px] max-w-[300px] flex-shrink-0">
 				
-				<div className="updateTask" onClick={handleUpdate}>
-					<UpdateTask task={editedTask} editStatus={isEditing}/>
+				<div className="updateTask">
+					<UpdateTask handleEditStatusChange={handleEditStatusChange} currentTask={currentTask} editedTask={editedTask} editStatus={isEditing} />
 				</div>
 
 				<div className="deleteTask">
