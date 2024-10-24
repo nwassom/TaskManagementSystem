@@ -7,6 +7,7 @@ import { RootState } from '../redux/store';
 
 import DeleteTask from './DeleteTask';
 import UpdateTask from './UpdateTask';
+import CompletionStatus from './CompletionStatus';
 
 interface TaskProps 
 {
@@ -103,6 +104,7 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 				}
 
 				<p  className={`text-sm ${task.isCompleted ? 'text-green-500' : 'text-red-500'}`}>Completed: {task.isCompleted ? 'Yes' : 'No'}</p>
+				<CompletionStatus />
 			</li>
 
 		</div>
