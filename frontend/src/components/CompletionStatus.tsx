@@ -11,12 +11,12 @@ import { ReactComponent as CheckMark} from '../assets/check-mark.svg';
 
 	on task hover able to change task completion status
 */
-const CompletionStatus: React.FC<> = ({}) =>
+const CompletionStatus: React.FC = ({}) =>
 {	
 	const dispatch = useDispatch();
 
 	return (
-
+		<div></div>
 	);
 };
 
