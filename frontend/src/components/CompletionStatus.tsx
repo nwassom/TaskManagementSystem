@@ -7,29 +7,36 @@ import { updateTask } from '../redux/taskSlice';
 import { ReactComponent as NotComplete } from '../assets/x-circle-svgrepo-com.svg';
 import { ReactComponent as Complete} from '../assets/check-mark.svg';
 
+import { UpdateApi } from '../utils/UpdateApi';
+
 interface CompletionStatusProps
 {
-	taskId: 
+	taskId: number | undefined;
 }
 /*
 	Returns the completion status of a task
 
 	on task hover able to change task completion status
 */
-const CompletionStatus: React.FC<CompletionStatusProps> = ({ task }) =>
+const CompletionStatus: React.FC<CompletionStatusProps> = ({ taskId }) =>
 {	
 	const dispatch = useDispatch();
 
-	const toggleCompletion = async (task: Task) =>
+	const task = useSelector((state: RootState) => state.tasks.tasks.find(t => t.id === taskId));
+
+	const toggleCompletion = async (task: Task | undefined) =>
 	{
-		const toggledTask = {...task, isCompleted: !task.isCompleted };
-		// updateApi(task);
-		dispatch(updateTask(toggledTask));
+		if (task)
+		{
+			const toggledTask = {...task, isCompleted: !task.isCompleted };
+			UpdateApi(task);
+			dispatch(updateTask(toggledTask));
+		}
 	}
 
 	return (
 		<div className="inline-block" onClick={() => toggleCompletion(task)}>
-			{ CompletionStatus ? (
+			{ task?.isCompleted ? (
 				<Complete className="checkMark"/>
 			) : (
 				<NotComplete className="checkMark"/>

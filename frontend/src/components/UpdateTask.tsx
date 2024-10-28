@@ -7,6 +7,7 @@ import { ReactComponent as EditIcon } from '../assets/edit-icon.svg';
 import { ReactComponent as CheckMark} from '../assets/check-mark.svg';
 
 import { CompareTask } from '../utils/CompareTask';
+import { UpdateApi } from '../utils/UpdateApi';
 
 interface UpdateTaskProps
 {	
@@ -19,20 +20,6 @@ interface UpdateTaskProps
 const UpdateTask: React.FC<UpdateTaskProps> = ({ currentTask, editedTask, editStatus, handleEditStatusChange }) =>
 {
 	const dispatch = useDispatch();
-
-	// Api call to backend to update the task
-	const updateApi = async (updatedTask: Task) =>
-	{
-		try
-		{
-			const response = await axios.patch(`http://localhost:5000/api/task/${updatedTask.id}`, updatedTask);
-			console.log(response);
-		}
-		catch (error)
-		{
-			console.error('Error updating task:', error);
-		}
-	};
 
 	/*
 		Function to handle everything if edits were made or not
@@ -47,7 +34,7 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ currentTask, editedTask, editSt
 			// Makes sure they aren't the same exact data
 			if (!CompareTask(editedTask, currentTask))
 			{
-				updateApi(editedTask);
+				UpdateApi(editedTask);
 				dispatch(updateTask(editedTask));
 			}
 			handleEditStatusChange();

@@ -104,7 +104,7 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 				}
 
 				<p  className={`text-sm ${task.isCompleted ? 'text-green-500' : 'text-red-500'}`}>Completed: {task.isCompleted ? 'Yes' : 'No'}</p>
-				<CompletionStatus task={currentTask}/>
+				<CompletionStatus taskId={currentTask.id}/>
 			</li>
 
 		</div>
