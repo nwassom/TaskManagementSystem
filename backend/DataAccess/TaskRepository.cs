@@ -62,10 +62,4 @@ public class TaskRepository
 		_context.Tasks.Update(updatedTask);
 		await _context.SaveChangesAsync();
 	}
-
-	public async Task TaskCompletionToggleAsync(UserTask task)
-	{
-		_context.Tasks.Update(task);
-		await _context.SaveChangesAsync();
-	}
 }

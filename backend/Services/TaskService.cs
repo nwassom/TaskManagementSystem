@@ -42,9 +42,4 @@ public class TaskService
 	{
 		await _taskRepository.UpdateTaskAsync(updatedTask);
 	}
-
-	public async Task TaskCompletionToggleAsync(UserTask task)
-	{
-		await _taskRepository.TaskCompletionToggleAsync(task);
-	}
 }

@@ -106,16 +106,4 @@ public class TaskController : ControllerBase
 			return StatusCode(500, $"Internal server error: {e.Message}");
 		}
 	}
-
-	// Update Task Completion via Toggle True -> False & vice versa
-	// [HttpPatch("{id}")]
-	// public IActionResult TaskCompletionToggle(int id, [FromBody] Task toggledTask)
-	// {
-	// 	try
-	// 	{
-	// 		var task = _taskService.GetTaskById(id);
-
-	// 		if (task =)
-	// 	}
-	// }
 }
