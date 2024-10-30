@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Task = TaskManagementSystem.Models.Task;
+using System.Threading.Tasks;
+
+using UserTask = TaskManagementSystem.Models.Task;
 using TaskManagementSystem.Data;
 
 namespace TaskManagementSystem.DataAccess;
@@ -22,22 +24,22 @@ public class TaskRepository
 	}
 
 	// Adds new task to the database
-	public void AddTask(Task task)
+	public async Task AddTaskAsync(UserTask task)
 	{
-		_context.Tasks.Add(task);
-		_context.SaveChanges();
+		await _context.Tasks.AddAsync(task);
+		await _context.SaveChangesAsync();
 	}
 
 	// Retrieve All tasks from DB
-	public List<Task> GetTasks()
+	public async Task<List<UserTask>> GetTasksAsync()
 	{
-		return _context.Tasks.ToList();
+		return await _context.Tasks.ToListAsync();
 	}
 
 	// Finds and returns a task given its id
-	public Task GetTaskById(int id)
+	public async Task<UserTask> GetTaskByIdAsync(int id)
 	{
-		var task = _context.Tasks.Find(id);
+		var task = await _context.Tasks.FindAsync(id);
 
 		if (task == null)
 		{
@@ -49,21 +51,21 @@ public class TaskRepository
 	}
 
 	// Deletes a given task
-	public void DeleteTasks(Task task)
+	public async Task DeleteTasksAsync(UserTask task)
 	{
 		_context.Tasks.Remove(task);
-		_context.SaveChanges();
+		await _context.SaveChangesAsync();
 	}
 
-	public void UpdateTask(Task updatedTask)
+	public async Task UpdateTaskAsync(UserTask updatedTask)
 	{
 		_context.Tasks.Update(updatedTask);
-		_context.SaveChanges();
+		await _context.SaveChangesAsync();
 	}
 
-	public void TaskCompletionToggle(Task task)
+	public async Task TaskCompletionToggleAsync(UserTask task)
 	{
 		_context.Tasks.Update(task);
-		_context.SaveChanges();
+		await _context.SaveChangesAsync();
 	}
 }

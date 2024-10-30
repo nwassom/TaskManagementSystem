@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
+using System.Threading.Tasks;
+
 using Task = TaskManagementSystem.Models.Task;
 
 namespace TaskManagementSystem.Controllers;
@@ -20,39 +22,39 @@ public class TaskController : ControllerBase
 
 	// Returns list of tasks
 	[HttpGet]
-	public IActionResult GetTasks()
+	public async Task<IActionResult> GetTasks()
 	{
-		var tasks = _taskService.GetTasks();
+		var tasks = await _taskService.GetTasksAsync();
 		return Ok(tasks);
 	}
 
 	// Creates new Task and saves in database
 	[HttpPost]
-	public IActionResult CreateTasks([FromBody] Task task)
+	public async Task<IActionResult> CreateTasks([FromBody] Task task)
 	{
 		if (task == null)
 		{
 			return BadRequest("Task cannot be null");
 		}
 		
-		_taskService.AddTask(task);
+		await _taskService.AddTaskAsync(task);
 		return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
 	}
 
 	// Deletes a Task given it's id
 	[HttpDelete("{id}")]
-	public IActionResult DeleteTasks(int id)
+	public async Task<IActionResult> DeleteTasks(int id)
 	{
 		try
 		{
-			var task = _taskService.GetTaskById(id);
+			var task = await _taskService.GetTaskByIdAsync(id);
 
 			if (task == null)
 			{
 				return NotFound($"Task with ID {id} not found.");
 			}
 
-			_taskService.DeleteTasks(task);
+			await _taskService.DeleteTasksAsync(task);
 
 			return NoContent();
 		}
@@ -64,11 +66,11 @@ public class TaskController : ControllerBase
 
 	// Update Task Information
 	[HttpPatch("{id}")]
-	public IActionResult UpdateTask(int id, [FromBody] Task updatedTask)
+	public async Task<IActionResult> UpdateTask(int id, [FromBody] Task updatedTask)
 	{
 		try
 		{
-			var existingTask = _taskService.GetTaskById(id);
+			var existingTask = await _taskService.GetTaskByIdAsync(id);
 
 			if (existingTask == null)
 			{
@@ -84,7 +86,7 @@ public class TaskController : ControllerBase
 			existingTask.Description = updatedTask.Description;
 			existingTask.IsCompleted = updatedTask.IsCompleted;
 
-			_taskService.UpdateTask(existingTask);
+			await _taskService.UpdateTaskAsync(existingTask);
 			return Ok("Task sucessfully updated");
 		}
 		catch (Exception e)

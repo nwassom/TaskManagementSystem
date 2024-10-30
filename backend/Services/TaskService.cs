@@ -1,5 +1,7 @@
 using System.Collections.Generic;
-using Task = TaskManagementSystem.Models.Task;
+using System.Threading.Tasks;
+
+using UserTask = TaskManagementSystem.Models.Task;
 using TaskManagementSystem.DataAccess;
 
 namespace TaskManagementSystem.Services;
@@ -16,33 +18,33 @@ public class TaskService
 		_taskRepository = taskRepository;
 	}
 
-	public void AddTask(Task task)
+	public async Task AddTaskAsync(UserTask task)
 	{
-		_taskRepository.AddTask(task);
+		await _taskRepository.AddTaskAsync(task);
 	}
 
-	public List<Task> GetTasks()
+	public async Task<List<UserTask>> GetTasksAsync()
 	{
-		return _taskRepository.GetTasks();
+		return await _taskRepository.GetTasksAsync();
 	}
 
-	public Task GetTaskById(int id)
+	public async Task<UserTask> GetTaskByIdAsync(int id)
 	{
-		return _taskRepository.GetTaskById(id);
+		return await _taskRepository.GetTaskByIdAsync(id);
 	}
 
-	public void DeleteTasks(Task task)
+	public async Task DeleteTasksAsync(UserTask task)
 	{
-		_taskRepository.DeleteTasks(task);
+		await _taskRepository.DeleteTasksAsync(task);
 	}
 
-	public void UpdateTask(Task updatedTask)
+	public async Task UpdateTaskAsync(UserTask updatedTask)
 	{
-		_taskRepository.UpdateTask(updatedTask);
+		await _taskRepository.UpdateTaskAsync(updatedTask);
 	}
 
-	public void TaskCompletionToggle(Task task)
+	public async Task TaskCompletionToggleAsync(UserTask task)
 	{
-		_taskRepository.TaskCompletionToggle(task);
+		await _taskRepository.TaskCompletionToggleAsync(task);
 	}
 }
