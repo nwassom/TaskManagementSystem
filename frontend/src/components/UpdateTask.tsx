@@ -31,11 +31,12 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ currentTask, editedTask, editSt
 	{
 		if (editStatus && currentTask !== undefined && editedTask !== undefined)
 		{
-			// Makes sure they aren't the same exact data
-			if (!CompareTask(editedTask, currentTask))
+			const changes: Partial<Task> = CompareTask(currentTask, editedTask);
+
+			if (Object.keys(changes).length > 0)
 			{
-				UpdateApi(editedTask);
-				dispatch(updateTask(editedTask));
+				await UpdateApi(currentTask.id, changes);
+				dispatch(updateTask({...currentTask, ...changes }));
 			}
 			handleEditStatusChange();
 		}

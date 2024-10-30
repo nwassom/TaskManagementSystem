@@ -82,9 +82,21 @@ public class TaskController : ControllerBase
 				return BadRequest("Invalid task data.");
 			}
 
-			existingTask.Title = updatedTask.Title;
-			existingTask.Description = updatedTask.Description;
-			existingTask.IsCompleted = updatedTask.IsCompleted;
+			 // Apply updates only if fields are provided in updatedTask
+	        if (updatedTask.Title != null)
+	        {
+	            existingTask.Title = updatedTask.Title;
+	        }
+
+	        if (updatedTask.Description != null)
+	        {
+	            existingTask.Description = updatedTask.Description;
+	        }
+
+	        if (updatedTask.IsCompleted.HasValue)
+	        {
+	            existingTask.IsCompleted = updatedTask.IsCompleted.Value;
+	        }
 
 			await _taskService.UpdateTaskAsync(existingTask);
 			return Ok("Task sucessfully updated");

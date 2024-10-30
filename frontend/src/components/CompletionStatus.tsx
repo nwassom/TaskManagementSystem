@@ -7,6 +7,7 @@ import { updateTask } from '../redux/taskSlice';
 import { ReactComponent as NotComplete } from '../assets/x-circle-svgrepo-com.svg';
 import { ReactComponent as Complete} from '../assets/check-mark.svg';
 
+import { CompareTask } from '../utils/CompareTask';
 import { UpdateApi } from '../utils/UpdateApi';
 
 interface CompletionStatusProps
@@ -29,8 +30,13 @@ const CompletionStatus: React.FC<CompletionStatusProps> = ({ taskId }) =>
 		if (task)
 		{
 			const toggledTask = {...task, isCompleted: !task.isCompleted };
-			UpdateApi(task);
-			dispatch(updateTask(toggledTask));
+			const changes: Partial<Task> = { isCompleted: toggledTask.isCompleted};
+
+			if (Object.keys(changes).length > 0)
+			{
+				await UpdateApi(toggledTask.id, changes);
+				dispatch(updateTask(toggledTask));
+			}
 		}
 	}
 
