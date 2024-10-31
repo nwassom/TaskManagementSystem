@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Task = TaskManagementSystem.Models.Task;
+using User = TaskManagementSystem.Models.User;
 
 namespace TaskManagementSystem.Data;
 
@@ -14,9 +15,20 @@ public class TaskManagementDbContext : DbContext
 	}
 
 	public DbSet<Task> Tasks { get; set; }
+	public DbSet<User> Users { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.Entity<Task>().HasKey(t => t.Id);
+		modelBuilder.Entity<Task>()
+			.HasKey(t => t.Id);
+
+		modelBuilder.Entity<User>()
+			.HasKey(u => u.UserId);
+
+		modelBuilder.Entity<Task>()
+			.HasOne(t => t.User)
+			.WithMany(u => u.Tasks)
+			.HasForeignKey(t => t.UserId)
+			.OnDelete(DeleteBehavior.Cascade);
 	}
 }
