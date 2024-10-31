@@ -42,8 +42,6 @@ public class Startup
 			.Replace("{DbUser}", System.Environment.GetEnvironmentVariable("SA_USER"))
             .Replace("{DbPassword}", System.Environment.GetEnvironmentVariable("SA_PASSWORD"))
             .Replace("{DbIPAddress}", System.Environment.GetEnvironmentVariable("DB_IPADDRESS"));
-
-        Console.Write(connectionString);
 		services.AddDbContext<TaskManagementDbContext>(options =>
 			options.UseSqlServer(connectionString));
 		services.AddControllers();

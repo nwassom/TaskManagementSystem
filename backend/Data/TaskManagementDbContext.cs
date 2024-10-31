@@ -23,7 +23,7 @@ public class TaskManagementDbContext : DbContext
 			.HasKey(t => t.Id);
 
 		modelBuilder.Entity<User>()
-			.HasKey(u => u.UserId);
+			.HasKey(u => u.Id);
 
 		modelBuilder.Entity<Task>()
 			.HasOne(t => t.User)
