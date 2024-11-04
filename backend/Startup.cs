@@ -43,7 +43,10 @@ public class Startup
             .Replace("{DbPassword}", System.Environment.GetEnvironmentVariable("SA_PASSWORD"))
             .Replace("{DbIPAddress}", System.Environment.GetEnvironmentVariable("DB_IPADDRESS"));
 		services.AddDbContext<TaskManagementDbContext>(options =>
-			options.UseSqlServer(connectionString));
+			options.UseSqlServer(connectionString, sqlOptions =>
+					sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
+				)
+		);
 		services.AddControllers();
 		services.AddScoped<TaskService>();
 		services.AddScoped<TaskRepository>();
