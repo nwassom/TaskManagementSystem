@@ -43,7 +43,7 @@ public class TaskController : ControllerBase
 
 	// Deletes a Task given it's id
 	[HttpDelete("{id}")]
-	public async Task<IActionResult> DeleteTasks(int id)
+	public async Task<IActionResult> DeleteTask(int id)
 	{
 		try
 		{
@@ -54,7 +54,7 @@ public class TaskController : ControllerBase
 				return NotFound($"Task with ID {id} not found.");
 			}
 
-			await _taskService.DeleteTasksAsync(task);
+			await _taskService.DeleteTaskAsync(task);
 
 			return NoContent();
 		}

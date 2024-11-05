@@ -51,7 +51,7 @@ public class TaskRepository
 	}
 
 	// Deletes a given task
-	public async Task DeleteTasksAsync(UserTask task)
+	public async Task DeleteTaskAsync(UserTask task)
 	{
 		_context.Tasks.Remove(task);
 		await _context.SaveChangesAsync();

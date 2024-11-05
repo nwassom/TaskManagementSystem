@@ -33,9 +33,9 @@ public class TaskService
 		return await _taskRepository.GetTaskByIdAsync(id);
 	}
 
-	public async Task DeleteTasksAsync(UserTask task)
+	public async Task DeleteTaskAsync(UserTask task)
 	{
-		await _taskRepository.DeleteTasksAsync(task);
+		await _taskRepository.DeleteTaskAsync(task);
 	}
 
 	public async Task UpdateTaskAsync(UserTask updatedTask)

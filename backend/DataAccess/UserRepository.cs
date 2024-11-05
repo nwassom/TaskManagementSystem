@@ -20,7 +20,7 @@ public class UserRepository
 	}
 
 	// Adds new user to the database
-	public async User AddUserAsync(User user)
+	public async Task AddUserAsync(User user)
 	{
 		await _context.Users.AddAsync(user);
 		await _context.SaveChangesAsync();
@@ -40,16 +40,18 @@ public class UserRepository
 		return user;
 	}
 
-	public async User DeleteUserAsync(User user)
+	public async Task DeleteUserAsync(User user)
 	{
 		_context.Users.Remove(user);
 		await _context.SaveChangesAsync();
 	}
 
-	public async User UpdateUserAsync(User updatedUser)
+	public async Task UpdateUserAsync(User updatedUser)
 	{
 		_context.Users.Update(updatedUser);
 		await _context.SaveChangesAsync();
 	}
+
+	
 
 }
