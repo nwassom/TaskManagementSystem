@@ -6,6 +6,8 @@ using User = TaskManagementSystem.Models.User;
 
 namespace TaskManagementSystem.Controllers;
 
+[ApiController]
+[Route("api/user")]
 public class UserController : ControllerBase
 {
 	private readonly UserService _userService;

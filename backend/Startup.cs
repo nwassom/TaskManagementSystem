@@ -50,6 +50,9 @@ public class Startup
 		services.AddControllers();
 		services.AddScoped<TaskService>();
 		services.AddScoped<TaskRepository>();
+
+		services.AddScoped<UserService>();
+		services.AddScoped<UserRepository>();
 	}
 
 	public void Configure(IApplicationBuilder app)

@@ -21,5 +21,5 @@ public class User
 
 	public DateTime? LastLogin { get; set; }
 
-	public ICollection<Task> Tasks { get; set; }
+	public ICollection<Task>? Tasks { get; set; }
 }
