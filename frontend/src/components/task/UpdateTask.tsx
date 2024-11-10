@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import Task from '../Models/Task';
-import { updateTask } from '../redux/taskSlice';
-import { ReactComponent as EditIcon } from '../assets/edit-icon.svg';
-import { ReactComponent as CheckMark} from '../assets/check-mark.svg';
+import Task from '../../Models/Task';
+import { updateTask } from '../../redux/taskSlice';
+import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg';
+import { ReactComponent as CheckMark} from '../../assets/check-mark.svg';
 
-import { CompareTask } from '../utils/CompareTask';
-import { UpdateApi } from '../utils/UpdateApi';
+import { CompareTask } from '../../utils/CompareTask';
+import { UpdateApi } from '../../utils/UpdateApi';
 
 interface UpdateTaskProps
 {	

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import Task from '../Models/Task';
+import Task from '../../Models/Task';
 import TaskList from './TaskList';
-import { addTask } from '../redux/taskSlice';
+import { addTask } from '../../redux/taskSlice';
 
 const NewTask: React.FC = () =>
 {

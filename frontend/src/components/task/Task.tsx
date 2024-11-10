@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import TaskModel from '../Models/Task';
-import { setTasks, addTask, updateTask } from '../redux/taskSlice';
-import { RootState } from '../redux/store';
+import TaskModel from '../../Models/Task';
+import { setTasks, addTask, updateTask } from '../../redux/taskSlice';
+import { RootState } from '../../redux/store';
 
 import DeleteTask from './DeleteTask';
 import UpdateTask from './UpdateTask';
