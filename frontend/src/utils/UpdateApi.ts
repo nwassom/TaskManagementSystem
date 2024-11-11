@@ -1,4 +1,4 @@
-import Task from '../Models/Task';
+import Task from '../models/Task';
 import axios from 'axios';
 
 // Api call to backend to update the task

@@ -1,4 +1,4 @@
-import Task from '../Models/Task';
+import Task from '../models/Task';
 
 // Function to compare attributes of two tasks from the Task Model
 export const CompareTask = (task1: Task, task2: Task): Partial<Task> =>

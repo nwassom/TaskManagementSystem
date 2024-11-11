@@ -24,27 +24,17 @@ public class UserController : ControllerBase
 		{
 			return BadRequest("User cannot be null");
 		}
-
 		await _userService.AddUserAsync(user);
-
 
 		return NoContent(); // Fix this at some point
 	}
 
-	[HttpDelete("{id}")]
-	public async Task<IActionResult> DeleteUser(int id)
+	[HttpDelete]
+	public async Task<IActionResult> DeleteUser([FromBody] User user)
 	{
 		try
 		{
-			var user = await _userService.GetUserByIdAsync(id);
-
-			if (user == null)
-			{
-				return NotFound($"User with the ID {id} not found.");
-			}
-
-			await _userService.DeleteUserAsync(user);
-
+			await _userService.DeleteUserAsync(id);
 			return NoContent();
 		}
 		catch (Exception e)

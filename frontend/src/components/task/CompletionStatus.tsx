@@ -2,7 +2,7 @@ import React from 'react';
 import { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import Task from '../../Models/Task';
+import Task from '../../models/Task';
 import { updateTask } from '../../redux/taskSlice';
 import { ReactComponent as NotComplete } from '../../assets/x-circle-svgrepo-com.svg';
 import { ReactComponent as Complete} from '../../assets/check-mark.svg';

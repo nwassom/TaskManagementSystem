@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { deleteTask } from '../../redux/taskSlice';
-import Task from '../../Models/Task';
+import Task from '../../models/Task';
 import { ReactComponent as Trash } from '../../assets/trash3.svg';
 
 interface DeleteTaskProps 

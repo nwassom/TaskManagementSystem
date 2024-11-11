@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import TaskModel from '../../Models/Task';
+import TaskModel from '../../models/Task';
 import { setTasks } from '../../redux/taskSlice';
 import { RootState } from '../../redux/store';
 

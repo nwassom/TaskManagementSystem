@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using User = TaskManagementSystem.Models.User;
 using TaskManagementSystem.Data;
+using TaskManagementSystem.Utils.UserUtils;
 
 namespace TaskManagementSystem.DataAccess;
 
@@ -19,25 +20,16 @@ public class UserRepository
 		_context = context;
 	}
 
+	public async Task<User> FindUserByIdentifier(int? id, string? username, string? email)
+	{
+		return await UserUtils.FindUserByIdentifier(_context, id, username, email);
+	}
+
 	// Adds new user to the database
 	public async Task AddUserAsync(User user)
 	{
 		await _context.Users.AddAsync(user);
 		await _context.SaveChangesAsync();
-	}
-
-	// Finds User by id
-	public async Task<User> GetUserByIdAsync(int id)
-	{
-		var user = await _context.Users.FindAsync(id);
-
-		if (user == null)
-		{
-			throw new ArgumentException("Error User not found");
-			return null;
-		}
-
-		return user;
 	}
 
 	public async Task DeleteUserAsync(User user)
