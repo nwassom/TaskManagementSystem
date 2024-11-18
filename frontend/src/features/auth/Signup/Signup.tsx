@@ -11,11 +11,12 @@ const Signup: React.FC = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [name, setName] = useState("");
 
     const handleSignupAttempt = async (e: React.FormEvent) =>
     {
-        e.PreventDefault();
+        e.preventDefault();
 
         try
         {
@@ -29,6 +30,7 @@ const Signup: React.FC = () => {
 
     return (
         <div className="w-full flex flex-col items-center p-4 h-full align-center justify-center min-h-screen"> 
+        <h1 className="text-2xl font-bold text-center text-amber-100">Signup</h1>
         <SignupForm
             username={username}
             setUsername={setUsername}
@@ -36,8 +38,11 @@ const Signup: React.FC = () => {
             setEmail={setEmail}
             password={password}
             setPassword={setPassword}
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
             name={name}
             setName={setName}
+            onSubmit={handleSignupAttempt}
         />
         <a href="/login" className="block text-sm font-medium text-slate-300">
             Already have an account? Login
