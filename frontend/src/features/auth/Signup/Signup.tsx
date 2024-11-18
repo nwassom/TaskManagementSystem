@@ -2,6 +2,9 @@ import React, {useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import User from '../../../models/User';
+import { signup } from '../../../api/auth';
+
 import SignupForm from './SignupForm';
 
 const Signup: React.FC = () => {
@@ -18,35 +21,45 @@ const Signup: React.FC = () => {
     {
         e.preventDefault();
 
+        const user: User = {
+            username,
+            email,
+            name,
+            password,
+        };
+
         try
         {
+            await signup(user);
 
+            navigate('/login');
         }
         catch (error)
         {
-            console.error('Error attempting to signup:', error);
+            console.error('Error during signup:', error);
+            alert('Something went wrong. Please try again.');
         }
     };
 
     return (
         <div className="w-full flex flex-col items-center p-4 h-full align-center justify-center min-h-screen"> 
-        <h1 className="text-2xl font-bold text-center text-amber-100">Signup</h1>
-        <SignupForm
-            username={username}
-            setUsername={setUsername}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            confirmPassword={confirmPassword}
-            setConfirmPassword={setConfirmPassword}
-            name={name}
-            setName={setName}
-            onSubmit={handleSignupAttempt}
-        />
-        <a href="/login" className="block text-sm font-medium text-slate-300">
-            Already have an account? Login
-        </a>
+            <h1 className="text-2xl font-bold text-center text-amber-100">Signup</h1>
+            <SignupForm
+                username={username}
+                setUsername={setUsername}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                confirmPassword={confirmPassword}
+                setConfirmPassword={setConfirmPassword}
+                name={name}
+                setName={setName}
+                onSubmit={handleSignupAttempt}
+            />
+            <a href="/login" className="block text-sm font-medium text-slate-300">
+                Already have an account? Login
+            </a>
         </div>
     );
 };

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using User = TaskManagementSystem.Models.User;
 using TaskManagementSystem.DataAccess;
-using TaskManagementSystem.Utils.UserUtils;
+using TaskManagementSystem.Utils;
 
 namespace TaskManagementSystem.Services;
 
@@ -18,7 +18,7 @@ public class UserService
 
 	public async Task AddUserAsync(User user)
 	{
-		checkForUser = await _userRepository.FindUserByIdentifier(user.Username, user.Email);
+		User checkForUser = await _userRepository.FindUserByIdentifier(user.Id, user.Username, user.Email);
 
 		if (checkForUser != null)
 		{
@@ -37,7 +37,7 @@ public class UserService
 
 	public async Task DeleteUserAsync(User user)
 	{
-		userToDelete = await _userRepository.FindUserByIdentifier(user.id, user.Username, user.email);
+		User userToDelete = await _userRepository.FindUserByIdentifier(user.Id, user.Username, user.Email);
 
 		if (userToDelete != null)
 		{

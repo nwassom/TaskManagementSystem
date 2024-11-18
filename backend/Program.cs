@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection; 
+
 using TaskManagementSystem;
 
 /*
@@ -16,6 +20,13 @@ public class Program
 		Host.CreateDefaultBuilder(args)
 			.ConfigureWebHostDefaults(webBuilder => 
 			{
-				webBuilder.UseStartup<Startup>();
+				webBuilder.UseStartup<Startup>()
+					.ConfigureKestrel(options => 
+					{
+						options.ListenAnyIP(5001, listenOptions => 
+						{
+							listenOptions.UseHttps();
+						});
+				});
 			});
 }

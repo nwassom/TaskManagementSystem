@@ -11,10 +11,13 @@ public class User
 	public string Username { get; set; }
 
 	[Required, MinLength(8)]
-	public string HashedPassword { get; set; }
+	public string Password { get; set; }
 
 	[Required, MaxLength(100)]
 	public string Email { get; set; }
+
+	[Required, MaxLength(100)]
+	public string Name { get; set; }
 
 	[Required]
 	public DateTime CreatedAt { get; set; } = DateTime.Now;

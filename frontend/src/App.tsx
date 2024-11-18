@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import store from './redux/store';
 import { Login } from './features/auth/Login';
+import { Signup } from './features/auth/Signup';
 
 const App: React.FC = () => {
   const isLoggedIn = false; // Replace with your actual login check logic (e.g., JWT check)
@@ -13,14 +14,9 @@ const App: React.FC = () => {
       <Router>
         <div className="App h-screen bg-slate-900">
           <Routes>
-{/*             Redirect to home if user is logged in 
-            <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />*/}
-            
-            {/* Login route */}
+            <Route path="/" element={isLoggedIn ? <Signup /> : <Navigate to="/login" />} />
             <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
-            
-           {/*  Signup route 
-            <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />*/}
+            <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />
           </Routes>
         </div>
       </Router>

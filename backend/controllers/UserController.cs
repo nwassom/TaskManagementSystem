@@ -17,7 +17,7 @@ public class UserController : ControllerBase
 		_userService = userService;
 	}
 
-	[HttpPost]
+	[HttpPost("signup")]
 	public async Task<IActionResult> CreateUser([FromBody] User user)
 	{
 		if (user == null)
@@ -34,7 +34,7 @@ public class UserController : ControllerBase
 	{
 		try
 		{
-			await _userService.DeleteUserAsync(id);
+			await _userService.DeleteUserAsync(user);
 			return NoContent();
 		}
 		catch (Exception e)

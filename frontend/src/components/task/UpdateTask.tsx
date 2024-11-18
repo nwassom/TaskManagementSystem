@@ -7,7 +7,7 @@ import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg';
 import { ReactComponent as CheckMark} from '../../assets/check-mark.svg';
 
 import { CompareTask } from '../../utils/CompareTask';
-import { UpdateApi } from '../../utils/UpdateApi';
+import { UpdateApi } from '../../api/UpdateApi';
 
 interface UpdateTaskProps
 {	

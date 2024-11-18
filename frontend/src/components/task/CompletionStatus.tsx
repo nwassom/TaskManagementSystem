@@ -8,7 +8,7 @@ import { ReactComponent as NotComplete } from '../../assets/x-circle-svgrepo-com
 import { ReactComponent as Complete} from '../../assets/check-mark.svg';
 
 import { CompareTask } from '../../utils/CompareTask';
-import { UpdateApi } from '../../utils/UpdateApi';
+import { UpdateApi } from '../../api/UpdateApi';
 
 interface CompletionStatusProps
 {

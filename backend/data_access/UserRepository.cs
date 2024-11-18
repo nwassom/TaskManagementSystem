@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using User = TaskManagementSystem.Models.User;
 using TaskManagementSystem.Data;
-using TaskManagementSystem.Utils.UserUtils;
+using UserUtils = TaskManagementSystem.Utils.UserUtils;
 
 namespace TaskManagementSystem.DataAccess;
 

@@ -28,6 +28,7 @@ const Login: React.FC = () => {
 
     return (
         <div className="w-full flex flex-col items-center p-4 h-full align-center justify-center min-h-screen"> 
+        <h1 className="text-2xl font-bold text-center text-amber-100">Login</h1>
         <LoginForm
             userIdentifier={userIdentifier}
             setUserIdentifier={setUserIdentifier}
