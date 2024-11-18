@@ -20,13 +20,13 @@ public class Program
 		Host.CreateDefaultBuilder(args)
 			.ConfigureWebHostDefaults(webBuilder => 
 			{
-				webBuilder.UseStartup<Startup>()
-					.ConfigureKestrel(options => 
-					{
-						options.ListenAnyIP(5001, listenOptions => 
-						{
-							listenOptions.UseHttps();
-						});
-				});
+				webBuilder.UseStartup<Startup>();
+					// .ConfigureKestrel(options => 
+					// {
+					// 	options.ListenAnyIP(5001, listenOptions => 
+					// 	{
+					// 		listenOptions.UseHttps();
+					// 	});
+					// });
 			});
 }

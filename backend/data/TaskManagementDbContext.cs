@@ -22,13 +22,21 @@ public class TaskManagementDbContext : DbContext
 		modelBuilder.Entity<Task>()
 			.HasKey(t => t.Id);
 
-		modelBuilder.Entity<User>()
-			.HasKey(u => u.Id);
-
 		modelBuilder.Entity<Task>()
 			.HasOne(t => t.User)
 			.WithMany(u => u.Tasks)
 			.HasForeignKey(t => t.UserId)
 			.OnDelete(DeleteBehavior.Cascade);
+
+		modelBuilder.Entity<User>()
+			.HasKey(u => u.Id);
+
+		modelBuilder.Entity<User>()
+			.HasIndex(u => u.Username)
+			.IsUnique();
+
+		modelBuilder.Entity<User>()
+			.HasIndex(u => u.Email)
+			.IsUnique();
 	}
 }

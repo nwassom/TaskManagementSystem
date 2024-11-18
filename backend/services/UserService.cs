@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+using BCrypt.Net;
 
 using User = TaskManagementSystem.Models.User;
 using TaskManagementSystem.DataAccess;
@@ -18,21 +21,26 @@ public class UserService
 
 	public async Task AddUserAsync(User user)
 	{
-		User checkForUser = await _userRepository.FindUserByIdentifier(user.Id, user.Username, user.Email);
-
-		if (checkForUser != null)
-		{
-			if (checkForUser.Username == user.Username)
-			{
-				throw new ArgumentException("A User with this Username already exists");
-			}
-			else if (checkForUser.Email == user.Email)
-			{
-				throw new ArgumentException("A User with this Email may already exists");
-			}
+		try 
+		{	
+			user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+			await _userRepository.AddUserAsync(user);
 		}
-		
-		await _userRepository.AddUserAsync(user);
+		catch (DbUpdateException e)
+		{
+			if (e.InnerException is SqlException sqlEx && sqlEx.Number == 2627)
+			{
+				if (sqlEx.Message.Contains("Username"))
+				{
+					throw new ArgumentException("This username is already in use.");
+				}
+				if (sqlEx.Message.Contains("Email"))
+				{
+					throw new ArgumentException("This email is already in use.");
+				}
+			}
+			throw;
+		}
 	}
 
 	public async Task DeleteUserAsync(User user)

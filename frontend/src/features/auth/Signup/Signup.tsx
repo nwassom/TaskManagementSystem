@@ -31,13 +31,12 @@ const Signup: React.FC = () => {
         try
         {
             await signup(user);
-
             navigate('/login');
         }
         catch (error)
         {
             console.error('Error during signup:', error);
-            alert('Something went wrong. Please try again.');
+            alert(`Something went wrong. Please try again., ${error}`);
         }
     };
 

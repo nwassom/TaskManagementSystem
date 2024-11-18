@@ -57,7 +57,7 @@ public class Startup
 
 	public void Configure(IApplicationBuilder app)
 	{
-		app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
 		app.UseRouting();
 		app.UseCors("AllowReactApp");
 		app.UseAuthorization();

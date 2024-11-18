@@ -24,9 +24,19 @@ public class UserController : ControllerBase
 		{
 			return BadRequest("User cannot be null");
 		}
-		await _userService.AddUserAsync(user);
-
-		return NoContent(); // Fix this at some point
+		try
+		{
+			await _userService.AddUserAsync(user);
+			return NoContent();
+		}
+		catch (ArgumentException e)
+		{
+			return Conflict(new { message = e.Message });
+		}
+		catch (Exception e)
+		{
+			return StatusCode(500, $"Internal server error: {e.Message} | {e.InnerException?.Message} ");
+		}
 	}
 
 	[HttpDelete]
