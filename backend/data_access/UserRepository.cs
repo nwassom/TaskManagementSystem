@@ -32,6 +32,18 @@ public class UserRepository
 		await _context.SaveChangesAsync();
 	}
 
+	public async Task<User> GetUserByIdentifier(string identifier)
+	{
+		return await _context.Users
+			.FirstOrDefaultAsync(u => u.Email == identifier || u.Username == identifier);
+	}
+
+	public async Task UpdateUserAsync(User user)
+	{
+		_context.Users.Update(user);
+		await _context.SaveChangesAsync();
+	}
+
 	public async Task DeleteUserAsync(User user)
 	{
 		_context.Users.Remove(user);

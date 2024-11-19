@@ -43,6 +43,16 @@ public class UserService
 		}
 	}
 
+	public async Task<User> GetUserByIdentifier(string identifier)
+	{
+		return await _userRepository.GetUserByIdentifier(identifier);
+	}
+
+	public async Task UpdateUserAsync(User user)
+	{
+		await _userRepository.UpdateUserAsync(user);
+	}
+
 	public async Task DeleteUserAsync(User user)
 	{
 		User userToDelete = await _userRepository.FindUserByIdentifier(user.Id, user.Username, user.Email);
