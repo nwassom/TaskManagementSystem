@@ -85,7 +85,7 @@ public class TaskController : ControllerBase
 				return BadRequest("Invalid task data.");
 			}
 
-			 // Apply updates only if fields are provided in updatedTask
+			// Apply updates only if fields are provided in updatedTask
 	        if (updatedTask.Title != null)
 	        {
 	            existingTask.Title = updatedTask.Title;
