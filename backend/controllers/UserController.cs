@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
 using System.Threading.Tasks;
 
+using TaskManagementSystem.Models;
 using User = TaskManagementSystem.Models.User;
 
 namespace TaskManagementSystem.Controllers;
@@ -14,10 +15,12 @@ namespace TaskManagementSystem.Controllers;
 public class UserController : ControllerBase
 {
 	private readonly UserService _userService;
+	private readonly JwtService _jwtService;
 
-	public UserController(UserService userService)
+	public UserController(UserService userService, JwtService jwtService)
 	{
 		_userService = userService;
+		_jwtService = jwtService;
 	}
 
 	/*
@@ -60,7 +63,7 @@ public class UserController : ControllerBase
 			return Unauthorized("Invalid email or password");
 		}
 
-		user.LastLogin= DateTime.UtcNow();
+		user.LastLogin = DateTime.UtcNow;
 		await _userService.UpdateUserAsync(user);
 
 		var token = _jwtService.GenerateToken(user.Id, user.Email);
@@ -73,7 +76,7 @@ public class UserController : ControllerBase
 	            Email = user.Email,
 	            Name = user.Name,
 	            CreatedAt = user.CreatedAt,
-	            LastLogin = user.lastLogin,
+	            LastLogin = user.LastLogin,
 	        },
 	        Token = token
    	 	};

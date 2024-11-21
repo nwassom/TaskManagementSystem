@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -47,10 +52,35 @@ public class Startup
 					sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
 				)
 		);
+
+		var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
+		var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+		var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+
+		var key = Encoding.UTF8.GetBytes(jwtSecret);
+
+		services.AddAuthentication(options => 
+		{
+			options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+		}).AddJwtBearer(options => 
+		{
+			options.TokenValidationParameters = new TokenValidationParameters
+			{
+				ValidateIssuer = true,
+				ValidateAudience =  true,
+				ValidateLifetime = true,
+				ValidateIssuerSigningKey = true,
+				ValidIssuer = jwtIssuer,
+				ValidAudience = jwtAudience,
+				IssuerSigningKey = new SymmetricSecurityKey(key)
+			};
+		});
+
 		services.AddControllers();
 		services.AddScoped<TaskService>();
 		services.AddScoped<TaskRepository>();
 
+		services.AddScoped<JwtService, JwtService>();
 		services.AddScoped<UserService>();
 		services.AddScoped<UserRepository>();
 	}

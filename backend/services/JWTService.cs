@@ -15,9 +15,9 @@ public class JwtService
 
     public JwtService(IConfiguration configuration)
     {
-        _secretKey = configuration("Jwt:SecretKey");
-        _issuer = configuration("Jwt:Issuer");
-        _audience = configuration("Jwt:Audience");
+        _secretKey = configuration["Jwt:SecretKey"];
+        _issuer = configuration["Jwt:Issuer"];
+        _audience = configuration["Jwt:Audience"];
     }
 
     public string GenerateToken(int userId, string email)
@@ -37,9 +37,9 @@ public class JwtService
             audience: _audience,
             claims: claims,
             expires: DateTime.UtcNow.AddDays(30),
-            SigningCredentials: credentials
+            signingCredentials: credentials
         );
 
-        return JwtSecurityTokenHandler().WriteToken(token);
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }
