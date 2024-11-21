@@ -5,9 +5,11 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+using TaskManagementSystem.Interfaces;
+
 namespace TaskManagementSystem.Services;
 
-public class JwtService
+public class JwtService : IJwtService
 {
     private readonly string _secretKey;
     private readonly string _issuer;
@@ -15,9 +17,13 @@ public class JwtService
 
     public JwtService(IConfiguration configuration)
     {
-        _secretKey = configuration["Jwt:SecretKey"];
-        _issuer = configuration["Jwt:Issuer"];
-        _audience = configuration["Jwt:Audience"];
+        _secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? configuration["Jwt:SecretKey"];
+        _issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? configuration["Jwt:Issuer"];
+        _audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? configuration["Jwt:Audience"];
+
+        Console.WriteLine($"SecretKey: {_secretKey}");
+        Console.WriteLine($"Issuer: {_issuer}");
+        Console.WriteLine($"Audience: {_audience}");
     }
 
     public string GenerateToken(int userId, string email)

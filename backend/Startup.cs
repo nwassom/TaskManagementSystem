@@ -59,6 +59,10 @@ public class Startup
 
 		var key = Encoding.UTF8.GetBytes(jwtSecret);
 
+		Console.WriteLine($"JWT Secret (raw): {jwtSecret}");
+		Console.WriteLine($"Key Length (bytes): {key.Length}");
+
+
 		services.AddAuthentication(options => 
 		{
 			options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
