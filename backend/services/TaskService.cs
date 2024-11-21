@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using TaskManagementSystem.Interfaces;
 using UserTask = TaskManagementSystem.Models.Task;
 using TaskManagementSystem.DataAccess;
 
@@ -9,7 +9,7 @@ namespace TaskManagementSystem.Services;
 /*
 	Handles business logic and acts as middle layer between controller and database
 */
-public class TaskService
+public class TaskService : ITaskService
 {
 	private readonly TaskRepository _taskRepository;
 
@@ -26,6 +26,11 @@ public class TaskService
 	public async Task<List<UserTask>> GetTasksAsync()
 	{
 		return await _taskRepository.GetTasksAsync();
+	}
+
+	public async Task<List<UserTask>> GetTasksAsync(int userId)
+	{
+		return await _taskRepository.GetTasksAsync(userId);
 	}
 
 	public async Task<UserTask> GetTaskByIdAsync(int id)

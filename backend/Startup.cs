@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 
+using TaskManagementSystem.Interfaces;
 using TaskManagementSystem.Services;
 using TaskManagementSystem.DataAccess;
 using TaskManagementSystem.Data;
@@ -81,11 +83,12 @@ public class Startup
 		});
 
 		services.AddControllers();
-		services.AddScoped<TaskService>();
+		services.AddScoped<ITaskService, TaskService>();
 		services.AddScoped<TaskRepository>();
 
-		services.AddScoped<JwtService, JwtService>();
-		services.AddScoped<UserService>();
+		services.AddScoped<IJwtService, JwtService>();
+		services.AddHttpContextAccessor();
+		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<UserRepository>();
 	}
 
@@ -95,7 +98,7 @@ public class Startup
 		app.UseRouting();
 		app.UseCors("AllowReactApp");
 		app.UseAuthorization();
-
+		app.UseAuthentication();
 		app.UseEndpoints(endpoints =>
 		{
 			endpoints.MapControllers();

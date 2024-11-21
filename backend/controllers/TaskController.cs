@@ -1,9 +1,11 @@
 /**
  * 	Handles Api endpoints for Tasks
  **/
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 using Task = TaskManagementSystem.Models.Task;
 
@@ -14,6 +16,7 @@ namespace TaskManagementSystem.Controllers;
 */
 [ApiController]
 [Route("api/task")]
+[Authorize]
 public class TaskController : ControllerBase
 {
 	private readonly TaskService _taskService;
@@ -27,7 +30,25 @@ public class TaskController : ControllerBase
 	[HttpGet]
 	public async Task<IActionResult> GetTasks()
 	{
-		var tasks = await _taskService.GetTasksAsync();
+		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+		if (string.IsNullOrEmpty(userId))
+		{
+			return Unauthorized("User ID not found in the token");
+		}
+
+		if (!int.TryParse(userId, out int parsedUserId))
+		{
+			return BadRequest("Invalid User ID Format");
+		}
+
+		var tasks = await _taskService.GetTasksAsync(parsedUserId);
+
+		if (tasks == null || tasks.Count == 0)
+		{
+			return NotFound("No tasks found for this user.");
+		}
+		
 		return Ok(tasks);
 	}
 

@@ -3,20 +3,25 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
+using TaskManagementSystem.Interfaces;
 using User = TaskManagementSystem.Models.User;
 using TaskManagementSystem.DataAccess;
 using TaskManagementSystem.Utils;
 
 namespace TaskManagementSystem.Services;
 
-public class UserService
+public class UserService : IUserService
 {
 	private readonly UserRepository _userRepository;
+	private readonly IHttpContextAccessor _httpContextAccessor;
 
-	public UserService(UserRepository userRepository)
+	public UserService(UserRepository userRepository, IHttpContextAccessor httpContextAccessor)
 	{
 		_userRepository = userRepository;
+		_httpContextAccessor = httpContextAccessor;
 	}
 
 	public async Task AddUserAsync(User user)
@@ -61,5 +66,17 @@ public class UserService
 	public async Task UpdateUserAsync(User updatedUser)
 	{
 		await _userRepository.UpdateUserAsync(updatedUser);
+	}
+
+	public int GetCurrentUserId()
+	{
+		var userIdClaim = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+		if (userIdClaim == null)
+		{
+			throw new UnauthorizedAccessException("User is not authenticated");
+		}
+
+		return int.Parse(userIdClaim);
 	}
 }

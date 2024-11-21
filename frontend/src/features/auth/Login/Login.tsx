@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../../api/auth';
 
 import LoginForm from './LoginForm';
 
 const Login: React.FC = () => {
-
     const navigate = useNavigate();
     
     const [userIdentifier, setUserIdentifier] = useState("");
@@ -16,9 +16,15 @@ const Login: React.FC = () => {
     {
         e.preventDefault();
 
+        const LoginRequest = {
+            Identifier: userIdentifier,
+            Password: password,
+        };
+
         try
         {
-
+            await login(LoginRequest, dispatch);
+            navigate('/home');
         }
         catch (error)
         {

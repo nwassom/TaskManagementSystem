@@ -36,6 +36,13 @@ public class TaskRepository
 		return await _context.Tasks.ToListAsync();
 	}
 
+	public async Task<List<UserTask>> GetTasksAsync(int userId)
+	{
+		return await _context.Tasks
+			.Where(t => t.UserId == userId)
+			.ToListAsync();
+	}
+
 	// Finds and returns a task given its id
 	public async Task<UserTask> GetTaskByIdAsync(int id)
 	{
