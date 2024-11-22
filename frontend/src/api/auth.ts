@@ -58,3 +58,25 @@ export const signup = async (user: User) => {
         throw new Error('An error occurred while signing up.');
     }
 };
+
+export const logout = async () => {
+    try
+    {
+        // const response = await axios.post(`${API_URL}/user/logout`, {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // });
+
+        // if (response.status === 200)
+        // {
+        //     localStorage.removeItem('jwtToken');
+        // }
+
+        localStorage.removeItem('jwtToken');
+    }
+    catch (error)
+    {
+        console.error('Error during logout:', error);
+    }
+};

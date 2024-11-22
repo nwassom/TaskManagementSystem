@@ -4,10 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import User from '../../../models/User';
 import { signup } from '../../../api/auth';
+import { useAuthNavigation } from '../../../utils/useAuthNavigation';
 
 import SignupForm from './SignupForm';
 
 const Signup: React.FC = () => {
+
+    useAuthNavigation();
 
     const navigate = useNavigate();
 

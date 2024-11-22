@@ -20,8 +20,8 @@ public class UserService : IUserService
 
 	public UserService(UserRepository userRepository, IHttpContextAccessor httpContextAccessor)
 	{
-		_userRepository = userRepository;
-		_httpContextAccessor = httpContextAccessor;
+		_userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+    	_httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
 	}
 
 	public async Task AddUserAsync(User user)
@@ -46,6 +46,11 @@ public class UserService : IUserService
 			}
 			throw;
 		}
+	}
+
+	public async Task LogoutAsync()
+	{
+		return
 	}
 
 	public async Task<User> GetUserByIdentifier(string identifier)

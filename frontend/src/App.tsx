@@ -8,17 +8,15 @@ import { Signup } from './features/auth/Signup';
 import Home  from './pages/Home';
 
 const App: React.FC = () => {
-  const isLoggedIn = false; // Replace with your actual login check logic (e.g., JWT check)
-
   return (
     <Provider store={store}>
       <Router>
         <div className="App h-screen bg-slate-900">
           <Routes>
-            <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-            <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
-            <Route path="/signup" element={isLoggedIn ? <Navigate to="/home" /> : <Signup />} />
-            <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/home" element={<Home/>} />
           </Routes>
         </div>
       </Router>

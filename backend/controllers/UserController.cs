@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
 using System.Threading.Tasks;
 
+using TaskManagementSystem.Interfaces;
 using TaskManagementSystem.Models;
 using User = TaskManagementSystem.Models.User;
 
@@ -14,10 +15,10 @@ namespace TaskManagementSystem.Controllers;
 [Route("api/user")]
 public class UserController : ControllerBase
 {
-	private readonly UserService _userService;
-	private readonly JwtService _jwtService;
+	private readonly IUserService _userService;
+	private readonly IJwtService _jwtService;
 
-	public UserController(UserService userService, JwtService jwtService)
+	public UserController(IUserService userService, IJwtService jwtService)
 	{
 		_userService = userService;
 		_jwtService = jwtService;
@@ -82,6 +83,14 @@ public class UserController : ControllerBase
    	 	};
 
     	return Ok(response);	
+	}
+
+	[HttpPost("logout")]
+	public async Task<IActionResult> Logout()
+	{
+		await _userService.LogoutAsync();
+
+		return Ok(new { message = "Successfully logged out" });
 	}
 
 	[HttpDelete]

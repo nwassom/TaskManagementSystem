@@ -83,11 +83,12 @@ public class Startup
 		});
 
 		services.AddControllers();
+		services.AddScoped<IHttpContextAccessor, HttpContextAccessor>(); 
+		
 		services.AddScoped<ITaskService, TaskService>();
 		services.AddScoped<TaskRepository>();
 
 		services.AddScoped<IJwtService, JwtService>();
-		services.AddHttpContextAccessor();
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<UserRepository>();
 	}

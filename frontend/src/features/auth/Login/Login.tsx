@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/auth';
 
+import { useAuthNavigation } from '../../../utils/useAuthNavigation';
+
 import LoginForm from './LoginForm';
 
 const Login: React.FC = () => {
@@ -11,6 +13,13 @@ const Login: React.FC = () => {
     const [userIdentifier, setUserIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+
+    /**
+     *  Eventually setup logic so that when going to initial page it grabs jwt
+     *  and before loading anything makes sure its still valid
+     **/
+    useAuthNavigation();
+
 
     const handleLoginAttempt = async (e: React.FormEvent) =>
     {
@@ -24,6 +33,7 @@ const Login: React.FC = () => {
         try
         {
             await login(LoginRequest, dispatch);
+            console.log('Login successful, navigating to home...');
             navigate('/home');
         }
         catch (error)
