@@ -59,11 +59,13 @@ public class Startup
 		var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
 		var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
 
+
 		var key = Encoding.UTF8.GetBytes(jwtSecret);
 
-		Console.WriteLine($"JWT Secret (raw): {jwtSecret}");
-		Console.WriteLine($"Key Length (bytes): {key.Length}");
-
+		Console.WriteLine($"JWT SECRET {jwtSecret}");
+		Console.WriteLine($"JWT issuer {jwtIssuer}");
+		Console.WriteLine($"JWT audience {jwtAudience}");
+		Console.WriteLine($"JWT key {Convert.ToBase64String(key)}");
 
 		services.AddAuthentication(options => 
 		{
@@ -98,8 +100,8 @@ public class Startup
         app.UseHttpsRedirection();
 		app.UseRouting();
 		app.UseCors("AllowReactApp");
-		app.UseAuthorization();
 		app.UseAuthentication();
+		app.UseAuthorization();
 		app.UseEndpoints(endpoints =>
 		{
 			endpoints.MapControllers();

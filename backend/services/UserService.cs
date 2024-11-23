@@ -50,7 +50,12 @@ public class UserService : IUserService
 
 	public async Task LogoutAsync()
 	{
-		return
+		return;
+	}
+
+	public async Task<User> GetUserByIdentifier(User user)
+	{
+		return await _userRepository.GetUserByIdentifier(user);
 	}
 
 	public async Task<User> GetUserByIdentifier(string identifier)
@@ -58,9 +63,14 @@ public class UserService : IUserService
 		return await _userRepository.GetUserByIdentifier(identifier);
 	}
 
+	public async Task<User> GetUserByIdentifier(int identifier)
+	{
+		return await _userRepository.GetUserByIdentifier(identifier);
+	}
+
 	public async Task DeleteUserAsync(User user)
 	{
-		User userToDelete = await _userRepository.FindUserByIdentifier(user.Id, user.Username, user.Email);
+		User userToDelete = await _userRepository.GetUserByIdentifier(user);
 
 		if (userToDelete != null)
 		{

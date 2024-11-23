@@ -19,6 +19,10 @@ export const useAuthNavigation = (): void =>
         {
             navigate('/login');
         }
+        else if (token && isSignupPage)
+        {
+            navigate('/home');
+        }
 
     }, [navigate]);
 };

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using TaskManagementSystem.Interfaces;
 
 using Task = TaskManagementSystem.Models.Task;
 
@@ -19,11 +20,13 @@ namespace TaskManagementSystem.Controllers;
 [Authorize]
 public class TaskController : ControllerBase
 {
-	private readonly TaskService _taskService;
+	private readonly ITaskService _taskService;
+	private	readonly IUserService _userService;
 
-	public TaskController(TaskService taskService)
+	public TaskController(ITaskService taskService, IUserService userService)
 	{
 		_taskService = taskService;
+		_userService = userService;
 	}
 
 	// Returns list of tasks
@@ -44,7 +47,7 @@ public class TaskController : ControllerBase
 
 		var tasks = await _taskService.GetTasksAsync(parsedUserId);
 
-		if (tasks == null || tasks.Count == 0)
+		if (tasks == null || !tasks.Any())
 		{
 			return NotFound("No tasks found for this user.");
 		}
@@ -56,11 +59,32 @@ public class TaskController : ControllerBase
 	[HttpPost]
 	public async Task<IActionResult> CreateTasks([FromBody] Task task)
 	{
-		if (task == null)
+		Console.WriteLine("0");
+		if (!ModelState.IsValid)
 		{
-			return BadRequest("Task cannot be null");
+	    	return BadRequest(ModelState);
 		}
-		
+		Console.WriteLine("1");
+		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+		if (string.IsNullOrEmpty(userId))
+		{
+			return Unauthorized("User ID not found in token");
+		}
+		if (int.TryParse(userId, out var parsedUserId))
+		{
+	        task.UserId = parsedUserId;
+	        Console.WriteLine("2");
+	    }
+	    else
+	    {
+	        return BadRequest("Invalid User ID in token.");
+	    }
+	    Console.WriteLine("3");
+		var user = await _userService.GetUserByIdentifier(parsedUserId);
+		Console.WriteLine("4");
+		task.UserId	= parsedUserId;
+		task.User = user;
+
 		await _taskService.AddTaskAsync(task);
 		return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
 	}

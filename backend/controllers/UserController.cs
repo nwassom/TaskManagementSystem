@@ -1,5 +1,5 @@
 /**
- * 	Handles Api endpoints for the User=
+ * 	Handles Api endpoints for the User
  **/
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Services;

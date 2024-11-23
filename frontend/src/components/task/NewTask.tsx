@@ -19,13 +19,29 @@ const NewTask: React.FC = () =>
 
 		try
 		{
+			const token = localStorage.getItem('jwtToken');
+
+			console.log(token);
+			if (!token) {
+				console.error('JWT token is missing. User may not be authenticated.');
+			    return;
+			}
 			const newTask: Omit<Task, 'createdAt'> = 
 			{
 				title,
 				description,
 				isCompleted,
 			};
-			const response = await axios.post('http://localhost:5000/api/task', newTask);
+
+			console.log("Sending request with data:", newTask);
+			console.log("Authorization header:", `Bearer ${token}`);
+
+			const response = await axios.post('http://localhost:5000/api/task', newTask, {
+				headers:{
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			dispatch(addTask(response.data));
 
 			setTitle("");
@@ -62,7 +78,6 @@ const NewTask: React.FC = () =>
 						id="description"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
-						required
 						className="w-full"
 					/>
 				</div>

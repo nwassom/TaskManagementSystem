@@ -18,7 +18,18 @@ const TaskList: React.FC = () =>
 		{
 			try 
 			{
-				const response = await axios.get('http://localhost:5000/api/task');
+				const token = localStorage.getItem('jwtToken');
+				if (!token) 
+				{
+					console.error('JWT token is missing. User may not be authenticated.');
+				    return;
+				}
+				const response = await axios.get('http://localhost:5000/api/task', {
+					headers:{
+						'Content-Type': 'application/json',
+						Authorization : `Bearer ${token}`,
+					},
+				});
 				dispatch(setTasks(response.data));
 				setLoading(false);
 			}

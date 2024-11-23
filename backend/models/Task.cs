@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace TaskManagementSystem.Models;
 
@@ -13,5 +14,9 @@ public class Task
 	public DateTime CreatedAt { get; set;} = DateTime.Now;
 	public bool? IsCompleted { get; set;}
 
-	public int UserId { get; set; }
+	[JsonIgnore]
+	public int? UserId { get; set; }
+
+	[JsonIgnore]
+	public User? User { get; set; }
 }
