@@ -1,0 +1,51 @@
+import axios from 'axios';
+import { AxiosResponse } from 'axios';
+import Task from '../models/Task';
+
+// Class to handle Task Api calls
+const TaskApi = () =>
+{
+	const _TaskApi: TaskApi = TaskApi();
+
+ 	const createTask: Promise<AxiosResponse<any, any>> = async(newTask: Task) => {
+
+		try
+		{
+			const token = localStorage.getItem('jwtToken');
+
+			if (!token) {
+				console.error('JWT token is missing. User may not be authenticated.');
+			    return;
+			}
+
+			const response = await axios.post('http://localhost:5000/api/task', newTask, {
+				headers:{
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			return response;
+		}
+		catch(error)
+		{
+			console.error('Error creating new task with api:', error);
+			throw error;
+		}
+	};
+
+	const getTasks = async() => {
+
+	};
+
+	const deleteTask = async() => {
+
+	};
+
+	const toggleCompletion = async() =>
+	{
+
+	};
+};
+
+export default TaskApi;

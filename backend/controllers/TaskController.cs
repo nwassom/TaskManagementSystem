@@ -59,12 +59,11 @@ public class TaskController : ControllerBase
 	[HttpPost]
 	public async Task<IActionResult> CreateTasks([FromBody] Task task)
 	{
-		Console.WriteLine("0");
 		if (!ModelState.IsValid)
 		{
 	    	return BadRequest(ModelState);
 		}
-		Console.WriteLine("1");
+
 		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 		if (string.IsNullOrEmpty(userId))
 		{
@@ -73,15 +72,12 @@ public class TaskController : ControllerBase
 		if (int.TryParse(userId, out var parsedUserId))
 		{
 	        task.UserId = parsedUserId;
-	        Console.WriteLine("2");
 	    }
 	    else
 	    {
 	        return BadRequest("Invalid User ID in token.");
 	    }
-	    Console.WriteLine("3");
 		var user = await _userService.GetUserByIdentifier(parsedUserId);
-		Console.WriteLine("4");
 		task.UserId	= parsedUserId;
 		task.User = user;
 
@@ -90,6 +86,10 @@ public class TaskController : ControllerBase
 	}
 
 	// Deletes a Task given it's id
+	/**
+	 * Potential Problems: 
+	 * 	- Other users changing id of task to be deleted via console deleting tasks from outside their user scope
+	 **/
 	[HttpDelete("{id}")]
 	public async Task<IActionResult> DeleteTask(int id)
 	{

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Task from '../../models/Task';
 import TaskList from './TaskList';
 import { addTask } from '../../redux/taskSlice';
+//import TaskApi from '../../api/taskApi';
 
 const NewTask: React.FC = () =>
 {
@@ -11,7 +12,6 @@ const NewTask: React.FC = () =>
 	const [description, setDescription] = useState("");
 	const [isCompleted, setIsCompleted] = useState(false);
 	const dispatch = useDispatch();
-
 
 	const handleSubmit = async (e: React.FormEvent) => 
 	{
@@ -32,9 +32,6 @@ const NewTask: React.FC = () =>
 				description,
 				isCompleted,
 			};
-
-			console.log("Sending request with data:", newTask);
-			console.log("Authorization header:", `Bearer ${token}`);
 
 			const response = await axios.post('http://localhost:5000/api/task', newTask, {
 				headers:{

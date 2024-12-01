@@ -8,6 +8,8 @@ interface Task
 	description?: string;
 	isCompleted: boolean;
 	createdAt: string;
+	date?: string;
+	startTime?: string;
 }
 
 export default Task;

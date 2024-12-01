@@ -68,7 +68,7 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 				</div>
 
 				{ !(isEditing) &&
-					<div className="TaskInfo">
+					<div className="TaskInfo p-4">
 						<h4 className="text-2xl font-semibold text-gray-800 mb-2">{currentTask.title}</h4>
 						<p  className="text-sm text-gray-500 mb-2"
 							>Created on: {new Date(currentTask.createdAt).toLocaleDateString('en-US', {
@@ -82,7 +82,7 @@ const Task: React.FC<TaskProps> = ({ task }) =>
 				}
 
 				{ isEditing &&
-					<div className="TaskInfo">
+					<div className="TaskInfo p-4">
 						<textarea
 							
 							className="text-2xl font-semibold text-gray-800 mb-2 border border-gray-300 rounded-lg p-2 w-full"
